@@ -1,5 +1,5 @@
 import classes from "./Form.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const INITIAL_VALUE = {
   name: "",
@@ -12,7 +12,7 @@ const INITIAL_VALUE = {
 let errorsObj = {};
 
 export default function Form() {
-  const [formData, setFormData] = useState(INITIAL_VALUE); //{}
+  const [formData, setFormData] = useState(INITIAL_VALUE);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -53,12 +53,8 @@ export default function Form() {
     return errorsObj;
   };
 
-  function changeHandler(event) {
-    const { value, name } = event.target; //{name:'dsd",value:"dfdf", id:"dgfg"}
-    // if (!value.trim()) {
-    //   return;
-    // }
-    //console.log(event.target);
+  function blurHandler(event) {
+    const { name, value } = event.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -73,29 +69,24 @@ export default function Form() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    debugger;
-    console.log("submit button clicked");
-    console.log("----------formData-----------", formData);
-    try {
-      if (Object.keys(errors).length === 0 && submitting) {
-        const resp = await fetch("http://localhost:5000/api/addStudent", {
+    if (Object.keys(errors).length === 0 && submitting) {
+      const response = await fetch(
+        "http://localhost:5000/api/studentdatapost",
+        {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
-        });
-        // const da = await resp.json();
-        // console.log(da);//same as formData
-        setFormData(INITIAL_VALUE);
-        e.target.reset();
-        console.log("Added a new student data to MongoDB");
-      } else {
-        let submitValidateVals = validateValues(formData, "");
-        setErrors(submitValidateVals);
-        //setErrors(validateValues(formData));
-        setSubmitting(true);
-      }
-    } catch (err) {
-      console.error("Failed to add student to MongoDB: " + err);
+        }
+      );
+
+      //var data = await response.json();
+      setFormData(INITIAL_VALUE);
+      e.target.reset();
+    } else {
+      let submitValidateVals = validateValues(formData, "");
+      setErrors(submitValidateVals);
+      //setErrors(validateValues(formData));
+      setSubmitting(true);
     }
   };
   return (
@@ -113,7 +104,8 @@ export default function Form() {
                 type="text"
                 name="name"
                 defaultValue={formData.name}
-                onChange={changeHandler}
+                /* onBlur={blurHandler} */
+                onChange={blurHandler}
               />
             </div>
             {
@@ -132,7 +124,7 @@ export default function Form() {
                 type="number"
                 name="age"
                 defaultValue={formData.age}
-                onChange={changeHandler}
+                onChange={blurHandler}
               />
             </div>
             {
@@ -144,24 +136,25 @@ export default function Form() {
               </div>
             }
 
-            {/* <div className={classes["form-row"]}>
+            <div className={classes["form-row"]}>
               <label htmlFor="studentid">Student ID</label>
               <input
                 id="studentid"
                 type="number"
                 name="studentId"
                 defaultValue={formData.studentId}
-                onChange={changeHandler}
+                onChange={blurHandler}
               />
-            </div> */}
-            {/* {
+            </div>
+            {
               <div className={classes["error-row"]}>
                 <label className={classes["dummylabel"]}></label>
                 {errors.studentId ? (
                   <p className={classes["error"]}>Student Id cannot be empty</p>
                 ) : null}
               </div>
-            } */}
+            }
+
             <div className={classes["form-row"]}>
               <label htmlFor="contactno">Contact No.</label>
               <input
@@ -169,7 +162,7 @@ export default function Form() {
                 type="number"
                 name="contactNo"
                 defaultValue={formData.contactNo}
-                onChange={changeHandler}
+                onChange={blurHandler}
               />
             </div>
             {
@@ -187,7 +180,7 @@ export default function Form() {
                 type="email"
                 name="email"
                 defaultValue={formData.email}
-                onChange={changeHandler}
+                onChange={blurHandler}
               />
             </div>
             {
@@ -198,6 +191,7 @@ export default function Form() {
                 ) : null}
               </div>
             }
+
             <div className={classes["form-row"]}>
               <label htmlFor="city">City</label>
               <input
@@ -205,7 +199,7 @@ export default function Form() {
                 type="text"
                 name="city"
                 defaultValue={formData.city}
-                onChange={changeHandler}
+                onChange={blurHandler}
               />
             </div>
             {
@@ -224,7 +218,7 @@ export default function Form() {
                 type="text"
                 name="state"
                 defaultValue={formData.state}
-                onChange={changeHandler}
+                onChange={blurHandler}
               />
             </div>
             {
@@ -235,6 +229,7 @@ export default function Form() {
                 ) : null}
               </div>
             }
+
             <div className={classes["button-wrapper"]}>
               <button type="submit">Submit</button>
             </div>

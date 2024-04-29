@@ -44,3 +44,18 @@
   border: none;
   cursor: pointer;
 }
+.error-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.error-row label.dummylabel {
+  flex: 1;
+}
+.error-row .error {
+  color: #ff0000;
+  font-size: 11px;
+  display: block;
+  margin: -8px 0px 5px 0px;
+  flex: 2;
+}
