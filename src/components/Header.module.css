@@ -12,10 +12,12 @@
 
 .nav-bar ul {
   list-style-type: none;
-  height: 50px;
-  line-height: 50px;
-  background: #6f6a6a;
-  color: #fff;
+  height: 35px;
+  line-height: 35px;
+  background: #ffffff;
+  color: #0241ff;
+  border-bottom: 1px solid #0241ff;
+  font-size: 14px;
 }
 
 .nav-bar ul li {
@@ -25,10 +27,12 @@
 }
 
 .nav-bar ul li:hover:not(.active) {
-  background: #363333;
+  background: #688cfb;
+  color: #ffffff;
 }
 
 li.active {
-  cursor: default;
-  background: #1b6e1b;
+  background: #0241ff;
+  cursor: default !important;
+  color: #fff;
 }
