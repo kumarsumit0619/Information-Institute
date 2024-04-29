@@ -1,0 +1,38 @@
+.dataTable {
+  width: 70%;
+  padding-top: 20px;
+  border: 0px;
+  outline: 0px;
+  margin: 0 auto;
+}
+.dataTable tr th {
+  background: #121c4e;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 5px 0px;
+  border-left: 1px solid #dadada;
+}
+.dataTable tr th:first-child {
+  border-left: 0px;
+}
+.dataTable tr:nth-child(odd) {
+  background: #dadada;
+  color: #414141;
+  font-size: 14px;
+  font-weight: normal;
+}
+.dataTable tr:nth-child(even) {
+  background: #ffffff;
+  color: #414141;
+  font-size: 14px;
+  font-weight: normal;
+}
+.dataTable tr td {
+  padding: 5px 5px;
+  border-right: 1px solid #414141;
+  border-bottom: 1px solid #414141;
+}
+.dataTable tr td:first-child {
+  border-left: 1px solid #414141;
+}

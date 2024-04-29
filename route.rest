@@ -1,0 +1,10 @@
+GET http://localhost:3000/api/item
+
+###
+POST http://localhost:5000/api/studentdatapost HTTP/1.1
+header name: header value
+
+content
+
+###
+DELETE http://localhost:5000/api/delete/662764583d037bcf5bcb5995

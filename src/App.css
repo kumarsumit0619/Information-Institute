@@ -1,0 +1,21 @@
+.tb-non-edit-mode {
+  width: 100%;
+  background: none;
+  border: 0px;
+  outline: 0px;
+  padding: 0px;
+  margin: 0px;
+  /* pointer-events: none; */
+}
+.tb-edit-mode {
+  width: 90%;
+  padding: 2px;
+  margin: 0px;
+  outline: none;
+  border: 1px solid #414141;
+  border-radius: 5px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

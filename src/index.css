@@ -1,0 +1,10 @@
+*{
+  margin: 0;
+  box-sizing:border-box;
+  padding: 0;
+  font-family: "taub sans","IBM Plex Sans",Helvetica,arial,sans-serif;
+}
+
+body {
+  background: #ffffff;
+}
